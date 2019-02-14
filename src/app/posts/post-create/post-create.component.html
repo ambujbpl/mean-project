@@ -3,26 +3,44 @@
 
 <!-- without two way binding use angular form-->
 <!-- mat-card, matInput and mat-form-field is angular material property -->
-<!-- <mat-card>
-  <form>
+<mat-card>
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
     <mat-form-field>
-        <input matInput type="text" [(ngModel)]="enteredTitle">
+        <input
+        matInput
+        type="text"
+        name="title"
+        ngModel
+        required
+        minlength="3"
+        #title = "ngModel">
+        <!-- //or add <mat-error *ngIf="postForm.getControl('title').invalid">-->
+        <mat-error *ngIf="title.invalid">Please Enter a post Title And Length of title should be greater then 3.</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <textarea matInput rows="5" [(ngModel)]="enteredContent"></textarea>
+      <textarea
+      matInput
+      rows="5"
+      name="content"
+      ngModel
+      required
+      minlength="5"
+      #content="ngModel">
+    </textarea>
+    <mat-error *ngIf="content.invalid">Please Enter a post Content And Length of Content should be greater then 5.</mat-error>
     </mat-form-field><br>
     <button
       mat-raised-button
-      color="warn"
-      (click)="onAddPost()">Post Submit
+      color="accent"
+      type="submit">Post Submit
     </button>
   </form>
-</mat-card> -->
+</mat-card>
 
 
 <!-- two way binding -->
 <!-- mat-card, matInput and mat-form-field is angular material property -->
-<mat-card>
+<!-- <mat-card>
   <mat-form-field>
       <input matInput type="text" [(ngModel)]="enteredTitle">
   </mat-form-field>
@@ -34,7 +52,7 @@
     color="warn"
     (click)="onAddPost()">Post Submit
   </button>
-</mat-card>
+</mat-card> -->
 
 
 <!-- Old message show in enter below -->
